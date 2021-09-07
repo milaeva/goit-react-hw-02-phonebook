@@ -6,10 +6,16 @@ import s from "./ContactsList.module.css"
 const ContactsList = ({ contacts, deleteContact }) => {
   return (
     <ul className={s.list}>
-      {contacts.map((contact) => {
-        let contactid = shortid.generate()
-        return <Contact key={contactid} contact={contact} deleteContact={deleteContact} />
-      })}
+      {contacts.map((contact) => (
+        <li key={contact.id} className={s.item}>
+          <p className={s.discribe}>
+            {contact.name}: {contact.number}
+          </p>
+          <button type="button" onClick={() => deleteContact(contact.id)}>
+            Delete
+          </button>
+        </li>
+      ))}
     </ul>
   )
 }
